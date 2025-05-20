@@ -4,19 +4,19 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"dev": "xplora dev",
-		"build": "xplora build",
-		"start": "xplora start"
+		"dev": "xplorajs dev",
+		"build": "xplorajs build",
+		"start": "xplorajs start"
 	},
 	"dependencies": {
-		"xplorajs-react": "latest",
-		"xplorajs": "latest",
+		"xplorajs-react": "^0.1.5",
+		"xplorajs": "^0.1.5",
 		"react": "^19.1.0",
 		"react-dom": "^19.1.0"
 	},
 	"devDependencies": {
-		"@types/react": "^18.2.0",
-		"@types/react-dom": "^18.2.0",
+		"@types/react": "^19.1.0",
+		"@types/react-dom": "^19.1.0",
 		"typescript": "^5.0.0"
 	}
 }

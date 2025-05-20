@@ -1,12 +1,12 @@
 {
 	"name": "xplorajs",
-	"version": "0.1.3",
+	"version": "0.1.5",
 	"type": "module",
 	"main": "dist/index.js",
 	"module": "dist/index.mjs",
 	"types": "dist/index.d.ts",
 	"bin": {
-		"xplora": "dist/cli.mjs"
+		"xplorajs": "./dist/cli.mjs"
 	},
 	"files": [
 		"dist",
@@ -14,7 +14,7 @@
 	],
 	"scripts": {
 		"dev": "bun run build --watch",
-		"build": "swc src -d dist",
+		"build": "swc src -d dist --config-file .swcrc",
 		"prepublishOnly": "bun run build"
 	},
 	"dependencies": {
