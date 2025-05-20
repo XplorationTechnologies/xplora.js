@@ -36,10 +36,8 @@ async function loadRoutes() {
 export async function dev() {
   console.log("Starting development server...");
 
-  // Start WebSocket server for HMR
   const wss = new WebSocketServer({ port: 3001 });
 
-  // Watch for file changes
   const watcher = watch(["src/**/*"], {
     ignored: /(^|[\/\\])\../,
     persistent: true,
@@ -50,7 +48,6 @@ export async function dev() {
     await build();
     await loadPages();
 
-    // Notify clients about the change
     for (const client of wss.clients) {
       if (client.readyState === WebSocket.OPEN) {
         client.send(JSON.stringify({ type: "reload" }));
@@ -58,11 +55,9 @@ export async function dev() {
     }
   });
 
-  // Initial build and page load
   await build();
   await loadPages();
 
-  // Start development server
   serve({
     port: 3000,
     async fetch(req) {

@@ -1,6 +1,5 @@
 {
-	"name": "xplora.js",
-	"version": "0.0.1",
+	"name": "xplorajs",
 	"private": true,
 	"workspaces": ["packages/*"],
 	"repository": {
@@ -12,11 +11,12 @@
 	},
 	"homepage": "https://github.com/xplorationtechnology/xplora.js#readme",
 	"scripts": {
-		"dev": "bun run --cwd packages/xplorajs dev",
+		"dev": "cd packages/xplorajs && bun run dev",
 		"watch:css": "cd packages/xplorajs && bun run watch:css",
-		"build": "bun run build:css && cd ../xplorajs-react && bun run build && cd ../xplorajs-core && bun run build",
+		"build": "cd packages/xplorajs-react && bun run build && cd ../xplorajs && bun run build && cd ../create-xplora-app && bun run build",
 		"build:css": "cd packages/xplorajs-react && bun run build && cd ../xplorajs-core && bun run build",
-		"serve": "cd packages/xplorajs && bun run serve"
+		"serve": "cd packages/xplorajs && bun run serve",
+		"publish": "cd packages/xplorajs && npm publish && cd ../xplorajs-react && npm publish && cd ../create-xplora-app && npm publish"
 	},
 	"devDependencies": {
 		"@tailwindcss/cli": "^4.1.7",
@@ -25,7 +25,8 @@
 		"bun-types": "^1.2.13",
 		"concurrently": "^9.1.2",
 		"tailwindcss": "^4.1.7",
-		"typescript": "^5.8.3"
+		"typescript": "^5.3.3",
+		"@types/node": "^20.11.24"
 	},
 	"dependencies": {
 		"react": "^19.1.0",

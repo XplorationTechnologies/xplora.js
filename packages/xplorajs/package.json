@@ -5,9 +5,12 @@
 	"module": "dist/index.mjs",
 	"types": "dist/index.d.ts",
 	"bin": {
-		"xplora": "./dist/cli.js"
+		"xplora": "dist/cli.js"
 	},
-	"files": ["dist", "README.md"],
+	"files": [
+		"dist",
+		"README.md"
+	],
 	"scripts": {
 		"dev": "bun run build --watch",
 		"build": "swc src -d dist",

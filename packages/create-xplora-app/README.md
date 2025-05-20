@@ -61,28 +61,30 @@ bun run preview
 
 ## 🔧 Konfigurasi
 
-Template menyediakan konfigurasi default yang dapat disesuaikan di `xplora.config.ts`:
+Template menyediakan konfigurasi default yang dapat disesuaikan di
+`xplora.config.ts`:
 
 ```typescript
-import { defineConfig } from 'xplora'
+import { defineConfig } from "xplora";
 
 export default defineConfig({
   static: {
-    outputDir: './dist',
-    revalidate: 3600, // ISR interval in seconds
-    fallback: false
+    outputDir: "./dist",
+    revalidate: 3600,
+    fallback: false,
   },
   build: {
     minify: true,
-    sourcemap: true
-  }
-})
+    sourcemap: true,
+  },
+});
 ```
 
 ## 🤝 Kontribusi
 
-Kami menyambut kontribusi! Silakan baca [CONTRIBUTING.md](../../CONTRIBUTING.md) untuk panduan kontribusi.
+Kami menyambut kontribusi! Silakan baca [CONTRIBUTING.md](../../CONTRIBUTING.md)
+untuk panduan kontribusi.
 
 ## 📝 Lisensi
 
-MIT License - lihat [LICENSE](../../LICENSE) untuk detail lebih lanjut. 
+MIT License - lihat [LICENSE](../../LICENSE) untuk detail lebih lanjut.

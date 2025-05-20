@@ -8,49 +8,46 @@ import { renderToReadableStream, renderToString } from "react-dom/server";
  * Otomatis fallback ke string jika Streaming tidak didukung.
  */
 export async function renderToStream(element: React.ReactElement) {
-	if (typeof renderToReadableStream === "function") {
-		return renderToReadableStream(element);
-	}
-	return renderToString(element);
+  if (typeof renderToReadableStream === "function") {
+    return renderToReadableStream(element);
+  }
+  return renderToString(element);
 }
 
 /**
  * Generate static HTML file untuk production mode (SSG).
  */
 export async function generateStaticPage(options: {
-	component: React.ReactElement;
-	outputPath: string;
-	props?: Record<string, unknown>;
+  component: React.ReactElement;
+  outputPath: string;
+  props?: Record<string, unknown>;
 }) {
-	const { component, outputPath, props } = options;
+  const { component, outputPath, props } = options;
 
-	// Render component ke string
-	const html = await renderToString(component);
+  const html = await renderToString(component);
 
-	// Buat directory jika belum ada
-	await fs.mkdir(path.dirname(outputPath), { recursive: true });
+  await fs.mkdir(path.dirname(outputPath), { recursive: true });
 
-	// Tulis file HTML
-	await fs.writeFile(outputPath, html);
+  await fs.writeFile(outputPath, html);
 }
 
 /**
  * Get static props untuk data fetching di build time.
  */
 export async function getStaticProps(
-	fn: () => Promise<Record<string, unknown>>,
+  fn: () => Promise<Record<string, unknown>>,
 ) {
-	try {
-		const props = await fn();
-		return {
-			props,
-			revalidate: 3600, // Default 1 jam
-		};
-	} catch (error) {
-		console.error("Error in getStaticProps:", error);
-		return {
-			props: {},
-			revalidate: 3600,
-		};
-	}
+  try {
+    const props = await fn();
+    return {
+      props,
+      revalidate: 3600,
+    };
+  } catch (error) {
+    console.error("Error in getStaticProps:", error);
+    return {
+      props: {},
+      revalidate: 3600,
+    };
+  }
 }
