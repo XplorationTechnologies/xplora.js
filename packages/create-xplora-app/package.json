@@ -1,0 +1,20 @@
+{
+	"name": "create-xplora-app",
+	"version": "0.0.1",
+	"private": true,
+	"type": "module",
+	"bin": {
+		"create-xplora-app": "bin/create-xplora-app.js"
+	},
+	"scripts": {
+		"build": "swc src -d dist"
+	},
+	"dependencies": {
+		"fs-extra": "^11.1.1",
+		"prompts": "^2.4.2"
+	},
+	"devDependencies": {
+		"@swc/cli": "^0.1.65",
+		"@swc/core": "^1.11.24"
+	}
+}

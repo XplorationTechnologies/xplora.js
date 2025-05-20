@@ -1,0 +1,37 @@
+{
+	"name": "xplora.js",
+	"version": "0.0.1",
+	"private": true,
+	"workspaces": [
+		"packages/*"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/xplorationtechnology/xplora.js.git"
+	},
+	"bugs": {
+		"url": "https://github.com/xplorationtechnology/xplora.js/issues"
+	},
+	"homepage": "https://github.com/xplorationtechnology/xplora.js#readme",
+	"scripts": {
+		"dev": "bun run --cwd packages/xplorajs dev",
+		"watch:css": "cd packages/xplorajs && bun run watch:css",
+		"build": "bun run build:css && cd ../xplorajs-react && bun run build && cd ../xplorajs-core && bun run build",
+		"build:css": "cd packages/xplorajs-react && bun run build && cd ../xplorajs-core && bun run build",
+		"serve": "cd packages/xplorajs && bun run serve"
+	},
+	"devDependencies": {
+		"@tailwindcss/cli": "^4.1.7",
+		"@types/react": "^19.1.4",
+		"@types/react-dom": "^19.1.5",
+		"bun-types": "^1.2.13",
+		"concurrently": "^9.1.2",
+		"tailwindcss": "^4.1.7",
+		"typescript": "^5.8.3"
+	},
+	"dependencies": {
+		"react": "^19.1.0",
+		"react-dom": "^19.1.0"
+	},
+	"packageManager": "yarn@4.5.1+sha512.341db9396b6e289fecc30cd7ab3af65060e05ebff4b3b47547b278b9e67b08f485ecd8c79006b405446262142c7a38154445ef7f17c1d5d1de7d90bf9ce7054d"
+}

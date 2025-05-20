@@ -1,0 +1,41 @@
+{
+	"name": "xplora",
+	"version": "0.0.1",
+	"main": "dist/index.js",
+	"module": "dist/index.mjs",
+	"types": "dist/index.d.ts",
+	"bin": {
+		"xplora": "./dist/cli.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/xplorationtechnology/xplora.js.git",
+		"directory": "packages/xplorajs"
+	},
+	"scripts": {
+		"dev": "bun run build --watch",
+		"build": "swc src -d dist",
+		"start": "node dist/cli.js start",
+		"serve": "bun --hot ./src/server.ts"
+	},
+	"dependencies": {
+		"@swc/cli": "^0.1.65",
+		"@swc/core": "^1.11.24",
+		"chokidar": "^3.6.0",
+		"commander": "^11.0.0",
+		"fast-glob": "^3.3.3",
+		"ws": "^8.18.2"
+	},
+	"devDependencies": {
+		"@types/bun": "^1.2.13",
+		"@types/ws": "^8.18.1",
+		"react-refresh": "^0.17.0"
+	},
+	"peerDependencies": {
+		"react": "^19.1.0",
+		"react-dom": "^19.1.0"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}
