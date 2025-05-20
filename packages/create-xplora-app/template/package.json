@@ -1,21 +1,22 @@
 {
-  "name": "xplora-app",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "xplora dev",
-    "build": "xplora build",
-    "start": "xplora start"
-  },
-  "dependencies": {
-    "xplorajs-react": "^0.0.1",
-    "xplorajs": "^0.0.1",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0"
-  },
-  "devDependencies": {
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0",
-    "typescript": "^5.0.0"
-  }
+	"name": "xplora-app",
+	"version": "0.1.1",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "xplora dev",
+		"build": "xplora build",
+		"start": "xplora start"
+	},
+	"dependencies": {
+		"xplorajs-react": "latest",
+		"xplorajs": "latest",
+		"react": "^19.1.0",
+		"react-dom": "^19.1.0"
+	},
+	"devDependencies": {
+		"@types/react": "^18.2.0",
+		"@types/react-dom": "^18.2.0",
+		"typescript": "^5.0.0"
+	}
 }
