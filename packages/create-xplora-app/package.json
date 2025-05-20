@@ -1,6 +1,7 @@
 {
-  "name": "@xplorationtechnology/create-xplora-app",
-  "version": "0.0.1",
+  "name": "create-xplora-app",
+  "version": "0.0.2",
+  "private": false,
   "type": "module",
   "bin": {
     "create-xplora-app": "bin/create-xplora-app.js"
@@ -8,6 +9,7 @@
   "files": [
     "dist",
     "bin",
+    "template",
     "README.md"
   ],
   "scripts": {
