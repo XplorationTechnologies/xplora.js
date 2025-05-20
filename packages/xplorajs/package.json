@@ -1,6 +1,6 @@
 {
   "name": "xplorajs",
-  "version": "0.3.1",
+  "version": "0.3.4",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,6 +14,7 @@
   "scripts": {
     "dev": "bun run build --watch",
     "build": "swc src -d dist --config-file .swcrc && tsc --emitDeclarationOnly",
+    "postbuild": "bun run ./scripts/fix-shebang.js",
     "prepublishOnly": "bun run build"
   },
   "dependencies": {
@@ -23,7 +24,7 @@
     "commander": "^11.1.0",
     "fast-glob": "^3.3.3",
     "ws": "^8.18.2",
-    "xplorajs-react": "^0.2.0"
+    "xplorajs-react": "latest"
   },
   "devDependencies": {
     "@types/bun": "^1.2.13",
