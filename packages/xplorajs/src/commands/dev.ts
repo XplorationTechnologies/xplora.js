@@ -5,11 +5,10 @@ import { watch } from "chokidar";
 import React from "react";
 import type { ComponentType } from "react";
 import { WebSocketServer } from "ws";
-import { renderToStream } from "xplora-react";
+import { renderToStream } from "xplorajs-react";
 import { build } from "./build";
 
-// biome-ignore lint/suspicious/noExplicitAny: <intended>
-const pages = new Map<string, ComponentType<any>>();
+const pages = new Map<string, ComponentType<Record<string, unknown>>>();
 
 async function loadPages() {
   pages.clear();
@@ -18,8 +17,10 @@ async function loadPages() {
   for (const route of routes) {
     const abs = join(process.cwd(), route.file);
     delete import.meta.require?.cache?.[abs];
-    // biome-ignore lint/suspicious/noExplicitAny: <intended>
-    pages.set(route.path, (await import(abs)).default as ComponentType<any>);
+    pages.set(
+      route.path,
+      (await import(abs)).default as ComponentType<Record<string, unknown>>,
+    );
   }
 }
 
@@ -43,7 +44,7 @@ export async function dev() {
     persistent: true,
   });
 
-  watcher.on("change", async (path) => {
+  watcher.on("change", async (path: string) => {
     console.log(`File ${path} has been changed`);
     await build();
     await loadPages();
@@ -60,15 +61,21 @@ export async function dev() {
 
   serve({
     port: 3000,
-    async fetch(req) {
-      const url = new URL(req.url).pathname;
+    development: true,
+    async fetch(req: Request) {
+      const url = new URL(req.url);
+      const path = url.pathname;
 
-      if (url.startsWith("/assets/")) {
-        const f = Bun.file(join(process.cwd(), "dist", url));
+      if (path === "/") {
+        return new Response("Hello from XploraJS!");
+      }
+
+      if (path.startsWith("/assets/")) {
+        const f = Bun.file(join(process.cwd(), "dist", path));
         if (await f.exists()) return new Response(f);
       }
 
-      const Page = pages.get(url);
+      const Page = pages.get(path);
       if (!Page) return new Response("Not Found", { status: 404 });
 
       const stream = await renderToStream(React.createElement(Page));

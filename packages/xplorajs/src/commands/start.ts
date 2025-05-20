@@ -1,16 +1,25 @@
-import { readFileSync } from "node:fs";
-import { join } from "node:path";
+import { serve } from "bun";
 
 export async function start() {
   console.log("Starting production server...");
 
-  const server = Bun.serve({
+  const config = {
     port: 3000,
-    fetch(req) {
-      // TODO: Implement production server logic
-      return new Response("Production server running...");
+  };
+
+  serve({
+    port: config.port,
+    async fetch(req: Request) {
+      const url = new URL(req.url);
+      const path = url.pathname;
+
+      if (path === "/") {
+        return new Response("Hello from XploraJS!");
+      }
+
+      return new Response("Not found", { status: 404 });
     },
   });
 
-  console.log(`Production server running at http://localhost:${server.port}`);
+  console.log("Production server running at http://localhost:3000");
 }

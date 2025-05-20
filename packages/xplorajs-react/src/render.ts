@@ -22,7 +22,7 @@ export async function generateStaticPage(options: {
   outputPath: string;
   props?: Record<string, unknown>;
 }) {
-  const { component, outputPath, props } = options;
+  const { component, outputPath } = options;
 
   const html = await renderToString(component);
 

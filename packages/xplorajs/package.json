@@ -1,41 +1,41 @@
 {
-	"name": "xplorajs",
-	"version": "0.1.5",
-	"type": "module",
-	"main": "dist/index.js",
-	"module": "dist/index.mjs",
-	"types": "dist/index.d.ts",
-	"bin": {
-		"xplorajs": "./dist/cli.mjs"
-	},
-	"files": [
-		"dist",
-		"README.md"
-	],
-	"scripts": {
-		"dev": "bun run build --watch",
-		"build": "swc src -d dist --config-file .swcrc",
-		"prepublishOnly": "bun run build"
-	},
-	"dependencies": {
-		"@swc/cli": "^0.1.65",
-		"@swc/core": "^1.11.24",
-		"chokidar": "^3.6.0",
-		"commander": "^11.0.0",
-		"fast-glob": "^3.3.3",
-		"ws": "^8.18.2",
-		"xplorajs-react": "^0.0.1"
-	},
-	"devDependencies": {
-		"@types/bun": "^1.2.13",
-		"@types/ws": "^8.18.1",
-		"react-refresh": "^0.17.0"
-	},
-	"peerDependencies": {
-		"react": "^19.1.0",
-		"react-dom": "^19.1.0"
-	},
-	"publishConfig": {
-		"access": "public"
-	}
+  "name": "xplorajs",
+  "version": "0.2.1",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "xplorajs": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "dev": "bun run build --watch",
+    "build": "swc src -d dist --config-file .swcrc && tsc --emitDeclarationOnly",
+    "prepublishOnly": "bun run build"
+  },
+  "dependencies": {
+    "@swc/cli": "^0.1.65",
+    "@swc/core": "^1.11.24",
+    "chokidar": "^3.6.0",
+    "commander": "^11.1.0",
+    "fast-glob": "^3.3.3",
+    "ws": "^8.18.2",
+    "xplorajs-react": "^0.2.0"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.2.13",
+    "@types/ws": "^8.18.1",
+    "react-refresh": "^0.17.0"
+  },
+  "peerDependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "@types/react": "^19.1.4",
+    "@types/react-dom": "^19.1.5"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
 }

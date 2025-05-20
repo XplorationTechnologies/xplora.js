@@ -1,6 +1,6 @@
 {
   "name": "xplorajs-react",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -10,21 +10,17 @@
     "README.md"
   ],
   "scripts": {
-    "build": "swc src -d dist",
+    "build": "swc src -d dist && tsc --emitDeclarationOnly",
     "dev": "swc src -d dist --watch",
     "prepublishOnly": "bun run build"
   },
-  "dependencies": {
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0"
-  },
   "devDependencies": {
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0",
     "@swc/cli": "^0.1.65",
     "@swc/core": "^1.11.24"
   },
   "peerDependencies": {
+    "@types/react": "^18.3.21",
+    "@types/react-dom": "^18.3.7",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
