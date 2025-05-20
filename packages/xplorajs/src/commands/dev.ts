@@ -8,7 +8,8 @@ import { WebSocketServer } from "ws";
 import { renderToStream } from "xplorajs-react";
 import { build } from "./build";
 
-const pages = new Map<string, ComponentType<Record<string, unknown>>>();
+// biome-ignore lint/suspicious/noExplicitAny: <intended>
+const pages = new Map<string, ComponentType<Record<string, any>>>();
 
 async function loadPages() {
   pages.clear();
@@ -19,7 +20,8 @@ async function loadPages() {
     delete import.meta.require?.cache?.[abs];
     pages.set(
       route.path,
-      (await import(abs)).default as ComponentType<Record<string, unknown>>,
+      // biome-ignore lint/suspicious/noExplicitAny: <intended>
+      (await import(abs)).default as ComponentType<Record<string, any>>,
     );
   }
 }
