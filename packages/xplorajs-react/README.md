@@ -1,6 +1,7 @@
 # XploraJS React 🔄
 
-Package React untuk XploraJS yang menyediakan integrasi React dan static site generation.
+Package React untuk XploraJS yang menyediakan integrasi React dan static site
+generation.
 
 ## 🚀 Fitur
 
@@ -22,31 +23,31 @@ bun add xplora-react
 ### Basic Setup
 
 ```typescript
-import { generateStaticPage } from 'xplora-react'
+import { generateStaticPage } from "xplora-react";
 
 // Generate static page
 await generateStaticPage({
   component: <App />,
-  outputPath: './dist/index.html'
-})
+  outputPath: "./dist/index.html",
+});
 ```
 
 ### Static Data Generation
 
 ```typescript
-import { getStaticProps } from 'xplora-react'
+import { getStaticProps } from "xplora-react";
 
 export async function getStaticProps() {
   // Fetch data at build time
-  const data = await fetchData()
-  
+  const data = await fetchData();
+
   return {
     props: {
-      data
+      data,
     },
     // Revalidate every hour
-    revalidate: 3600
-  }
+    revalidate: 3600,
+  };
 }
 ```
 
@@ -59,7 +60,7 @@ function generateStaticPage(options: {
   component: React.ReactElement;
   outputPath: string;
   props?: Record<string, any>;
-}): Promise<void>
+}): Promise<void>;
 ```
 
 ### `getStaticProps`
@@ -68,7 +69,7 @@ function generateStaticPage(options: {
 function getStaticProps(): Promise<{
   props: Record<string, any>;
   revalidate?: number;
-}>
+}>;
 ```
 
 ## 🔧 Konfigurasi
@@ -76,24 +77,25 @@ function getStaticProps(): Promise<{
 Konfigurasi React dapat dilakukan melalui `xplora.config.ts`:
 
 ```typescript
-import { defineConfig } from 'xplora'
+import { defineConfig } from "xplora";
 
 export default defineConfig({
   react: {
     // Static generation options
     static: {
-      outputDir: './dist',
+      outputDir: "./dist",
       revalidate: 3600, // ISR interval in seconds
-      fallback: false
-    }
-  }
-})
+      fallback: false,
+    },
+  },
+});
 ```
 
 ## 🤝 Kontribusi
 
-Kami menyambut kontribusi! Silakan baca [CONTRIBUTING.md](../../CONTRIBUTING.md) untuk panduan kontribusi.
+Kami menyambut kontribusi! Silakan baca [CONTRIBUTING.md](../../CONTRIBUTING.md)
+untuk panduan kontribusi.
 
 ## 📝 Lisensi
 
-MIT License - lihat [LICENSE](../../LICENSE) untuk detail lebih lanjut. 
+MIT License - lihat [LICENSE](../../LICENSE) untuk detail lebih lanjut.

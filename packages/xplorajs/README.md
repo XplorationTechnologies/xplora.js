@@ -1,6 +1,7 @@
 # XploraJS Core 🎯
 
-Package utama dari framework XploraJS yang menyediakan fungsionalitas inti untuk static site generation.
+Package utama dari framework XploraJS yang menyediakan fungsionalitas inti untuk
+static site generation.
 
 ## 🚀 Fitur
 
@@ -37,6 +38,7 @@ xplora preview
 ### Development Mode
 
 Development mode menggunakan SSR untuk:
+
 - Hot Module Replacement (HMR)
 - Instant feedback saat development
 - Real-time data fetching
@@ -45,6 +47,7 @@ Development mode menggunakan SSR untuk:
 ### Production Mode
 
 Production mode menggunakan SSG untuk:
+
 - Performa optimal
 - SEO yang lebih baik
 - Hosting yang lebih murah
@@ -55,26 +58,26 @@ Production mode menggunakan SSG untuk:
 Buat file `xplora.config.ts` di root project:
 
 ```typescript
-import { defineConfig } from 'xplora'
+import { defineConfig } from "xplora";
 
 export default defineConfig({
   // Development options
   dev: {
     port: 3000,
-    hmr: true
+    hmr: true,
   },
   // Static generation options
   static: {
-    outputDir: './dist',
+    outputDir: "./dist",
     revalidate: 3600, // ISR interval in seconds
-    fallback: false
+    fallback: false,
   },
   // Build options
   build: {
     minify: true,
-    sourcemap: true
-  }
-})
+    sourcemap: true,
+  },
+});
 ```
 
 ## 📚 API Reference
@@ -97,8 +100,9 @@ export default defineConfig({
 
 ## 🤝 Kontribusi
 
-Kami menyambut kontribusi! Silakan baca [CONTRIBUTING.md](../../CONTRIBUTING.md) untuk panduan kontribusi.
+Kami menyambut kontribusi! Silakan baca [CONTRIBUTING.md](../../CONTRIBUTING.md)
+untuk panduan kontribusi.
 
 ## 📝 Lisensi
 
-MIT License - lihat [LICENSE](../../LICENSE) untuk detail lebih lanjut. 
+MIT License - lihat [LICENSE](../../LICENSE) untuk detail lebih lanjut.

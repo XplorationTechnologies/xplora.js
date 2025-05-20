@@ -30,7 +30,7 @@ Template aplikasi yang dibuat mencakup:
 
 ## 🛠️ Struktur Project
 
-```
+```text
 my-app/
 ├── src/
 │   ├── app/
