@@ -1,6 +1,8 @@
-import { readFile, writeFile } from "node:fs/promises";
-import { join } from "node:path";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { dirname, join } from "node:path";
 import { glob } from "fast-glob";
+import React from "react";
+import { generateStaticPage } from "xplorajs-react";
 
 interface Route {
 	path: string;
@@ -28,8 +30,40 @@ function convertToRoute(filePath: string): Route {
 	};
 }
 
+async function processPage(page: string, route: Route) {
+	try {
+		// Import page component
+		const module = await import(join(process.cwd(), page));
+		const PageComponent = module.default;
+
+		// Check if page has getStaticProps
+		const getStaticProps = module.getStaticProps;
+		let props = {};
+
+		if (getStaticProps) {
+			const result = await getStaticProps();
+			props = result.props;
+		}
+
+		// Generate static HTML
+		const outputPath = join(process.cwd(), "dist", route.path, "index.html");
+		await generateStaticPage({
+			component: React.createElement(PageComponent, props),
+			outputPath,
+			props,
+		});
+
+		console.log(`Generated ${outputPath}`);
+	} catch (error) {
+		console.error(`Error processing ${page}:`, error);
+	}
+}
+
 export async function build() {
 	console.log("Building application...");
+
+	// Create dist directory
+	await mkdir(join(process.cwd(), "dist"), { recursive: true });
 
 	// Find all page files
 	const pages = await glob("src/app/**/*.tsx", {
@@ -42,10 +76,7 @@ export async function build() {
 	for (const page of pages) {
 		const route = convertToRoute(page);
 		routes.push(route);
-
-		const content = await readFile(page, "utf-8");
-		// TODO: Implement page processing logic
-		console.log(`Processing ${page} -> ${route.path}`);
+		await processPage(page, route);
 	}
 
 	// Generate routes configuration

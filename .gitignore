@@ -1,33 +1,46 @@
-# Node.js
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
-
-# Dependency directories
-.pnp/
+# Dependencies
+node_modules
+.pnp
 .pnp.js
 
-# Build outputs
-dist/
-build/
-out/
+# Testing
+coverage
 
-# Environment variables
+# Production
+dist
+build
+.xplora
+
+# Development
 .env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 
-# Cache directories
-.npm/
-.yarn/
-.cache/
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
 
-# IDE specific files
-.idea/
-.vscode/
-*.swp
-*.swo
+# Editor
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS
+.DS_Store
+Thumbs.db
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Bun
+bun.lockb

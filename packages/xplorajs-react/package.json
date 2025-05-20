@@ -1,26 +1,30 @@
 {
-  "name": "xplora-react",
-  "version": "0.0.1",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/xplorationtechnology/xplora.js.git",
-    "directory": "packages/xplorajs-react"
-  },
-  "scripts": {
-    "build": "swc rc -d dist"
-  },
-  "devDependencies": {
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0"
-  },
-  "peerDependencies": {
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+	"name": "xplorajs-react",
+	"version": "0.0.1",
+	"main": "dist/index.js",
+	"module": "dist/index.mjs",
+	"types": "dist/index.d.ts",
+	"files": ["dist", "README.md"],
+	"scripts": {
+		"build": "swc src -d dist",
+		"dev": "swc src -d dist --watch",
+		"prepublishOnly": "bun run build"
+	},
+	"dependencies": {
+		"react": "^19.1.0",
+		"react-dom": "^19.1.0"
+	},
+	"devDependencies": {
+		"@types/react": "^18.2.0",
+		"@types/react-dom": "^18.2.0",
+		"@swc/cli": "^0.1.65",
+		"@swc/core": "^1.11.24"
+	},
+	"peerDependencies": {
+		"react": "^19.1.0",
+		"react-dom": "^19.1.0"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
 }

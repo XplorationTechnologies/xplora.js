@@ -1,0 +1,22 @@
+# Development
+node_modules
+.git
+.github
+.vscode
+*.log
+
+# Build
+dist
+.xplora
+
+# Source
+src
+*.ts
+*.tsx
+!*.d.ts
+
+# Config
+tsconfig.json
+swc.config.js
+biome.json
+.gitignore 

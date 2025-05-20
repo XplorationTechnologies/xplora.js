@@ -2,9 +2,7 @@
 	"name": "xplora.js",
 	"version": "0.0.1",
 	"private": true,
-	"workspaces": [
-		"packages/*"
-	],
+	"workspaces": ["packages/*"],
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/xplorationtechnology/xplora.js.git"

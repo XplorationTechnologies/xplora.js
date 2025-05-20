@@ -1,1 +1,1 @@
-export { renderToStream } from "./render";
+export { renderToStream, generateStaticPage, getStaticProps } from "./render";

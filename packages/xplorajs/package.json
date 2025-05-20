@@ -1,5 +1,5 @@
 {
-	"name": "xplora",
+	"name": "xplorajs",
 	"version": "0.0.1",
 	"main": "dist/index.js",
 	"module": "dist/index.mjs",
@@ -7,16 +7,11 @@
 	"bin": {
 		"xplora": "./dist/cli.js"
 	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/xplorationtechnology/xplora.js.git",
-		"directory": "packages/xplorajs"
-	},
+	"files": ["dist", "README.md"],
 	"scripts": {
 		"dev": "bun run build --watch",
 		"build": "swc src -d dist",
-		"start": "node dist/cli.js start",
-		"serve": "bun --hot ./src/server.ts"
+		"prepublishOnly": "bun run build"
 	},
 	"dependencies": {
 		"@swc/cli": "^0.1.65",
@@ -24,7 +19,8 @@
 		"chokidar": "^3.6.0",
 		"commander": "^11.0.0",
 		"fast-glob": "^3.3.3",
-		"ws": "^8.18.2"
+		"ws": "^8.18.2",
+		"xplorajs-react": "workspace:*"
 	},
 	"devDependencies": {
 		"@types/bun": "^1.2.13",

@@ -1,41 +1,51 @@
 {
-  "compilerOptions": {
-    // Target dan Module
-    "lib": ["ESNext", "DOM"],
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "moduleDetection": "force",
-    "jsx": "react-jsx",
-    "allowJs": true,
+	"compilerOptions": {
+		// Target dan Module
+		"lib": ["DOM", "DOM.Iterable", "ESNext"],
+		"target": "ES2020",
+		"module": "ESNext",
+		"moduleResolution": "bundler",
+		"moduleDetection": "force",
+		"jsx": "react-jsx",
+		"allowJs": true,
 
-    // Type Checking
-    "strict": true,
-    "skipLibCheck": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
+		// Type Checking
+		"strict": true,
+		"skipLibCheck": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noFallthroughCasesInSwitch": true,
 
-    // Output Control
-    "noEmit": true,
-    "allowImportingTsExtensions": true,
-    "verbatimModuleSyntax": true,
+		// Output Control
+		"noEmit": true,
+		"allowImportingTsExtensions": true,
+		"verbatimModuleSyntax": true,
 
-    // Deklarasi Tipe
-    "declaration": true,
-    "emitDeclarationOnly": false,
-    "composite": false,
+		// Deklarasi Tipe
+		"declaration": true,
+		"emitDeclarationOnly": false,
+		"composite": false,
 
-    // Bun Specific
-    "types": ["bun-types"],
-    "isolatedModules": true,
+		// Bun Specific
+		"types": ["bun-types"],
+		"isolatedModules": true,
+		"esModuleInterop": true,
 
-    // Path Aliases
-    "baseUrl": ".",
-    "paths": {
-      "@xplorajs/*": ["packages/*/src"]
-    }
-  },
-  "include": ["packages/**/*"],
-  "exclude": ["node_modules"]
+		// Path Aliases
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["./src/*"]
+		},
+
+		// Additional Options
+		"allowSyntheticDefaultImports": true,
+		"forceConsistentCasingInFileNames": true,
+		"resolveJsonModule": true
+	},
+	"include": ["packages/**/*"],
+	"exclude": ["node_modules", "dist", "build", "coverage"],
+	"references": [
+		{ "path": "packages/xplorajs" },
+		{ "path": "packages/xplorajs-react" }
+	]
 }
