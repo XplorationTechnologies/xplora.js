@@ -42,6 +42,4 @@ Thumbs.db
 *.tsbuildinfo
 next-env.d.ts
 
-# Bun
-bun.lockb
 .github/copilot-instructions.md
