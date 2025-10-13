@@ -3,11 +3,15 @@
 	"compilerOptions": {
 		"composite": true,
 		"declaration": true,
+		"declarationMap": true,
+		"emitDeclarationOnly": true,
 		"outDir": "./dist",
 		"rootDir": "./src",
-		"noEmit": false,
-		"allowImportingTsExtensions": false
+		"allowImportingTsExtensions": false,
+		"noEmit": false
 	},
-	"include": ["src/**/*"],
+	"include": [
+		"src/**/*"
+	],
 	"references": []
 }

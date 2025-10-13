@@ -12,6 +12,7 @@
     "template",
     "README.md"
   ],
+  "sideEffects": false,
   "scripts": {
     "build": "swc src -d dist",
     "prepublishOnly": "bun run build"

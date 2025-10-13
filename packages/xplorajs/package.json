@@ -2,7 +2,9 @@
   "name": "xplorajs",
   "version": "0.3.4",
   "type": "module",
-  "main": "dist/index.js",
+  "exports": {
+    ".": { "import": "./dist/index.js", "types": "./dist/index.d.ts" }
+  },
   "types": "dist/index.d.ts",
   "bin": {
     "xplorajs": "./dist/cli.js"
@@ -11,6 +13,7 @@
     "dist",
     "README.md"
   ],
+  "sideEffects": false,
   "scripts": {
     "dev": "bun run build --watch",
     "build": "swc src -d dist --config-file .swcrc && tsc --emitDeclarationOnly",
@@ -18,24 +21,22 @@
     "prepublishOnly": "bun run build"
   },
   "dependencies": {
-    "@swc/cli": "^0.1.65",
-    "@swc/core": "^1.11.24",
     "chokidar": "^3.6.0",
     "commander": "^11.1.0",
     "fast-glob": "^3.3.3",
     "ws": "^8.18.2",
-    "xplorajs-react": "latest"
+    "xplorajs-react": "workspace:^0.3.0"
   },
   "devDependencies": {
+    "@swc/cli": "^0.1.65",
+    "@swc/core": "^1.11.24",
     "@types/bun": "^1.2.13",
     "@types/ws": "^8.18.1",
     "react-refresh": "^0.17.0"
   },
   "peerDependencies": {
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "@types/react": "^19.1.4",
-    "@types/react-dom": "^19.1.5"
+    "react": ">=18 || >=19",
+    "react-dom": ">=18 || >=19"
   },
   "publishConfig": {
     "access": "public"

@@ -44,3 +44,4 @@ next-env.d.ts
 
 # Bun
 bun.lockb
+.github/copilot-instructions.md

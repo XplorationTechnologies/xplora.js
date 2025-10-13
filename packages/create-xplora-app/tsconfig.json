@@ -4,11 +4,14 @@
 		"composite": true,
 		"declaration": true,
 		"declarationMap": true,
+		"emitDeclarationOnly": false,
 		"outDir": "./dist",
-		"rootDir": ".",
+		"rootDir": "./src",
 		"allowImportingTsExtensions": false,
 		"noEmit": false
 	},
-	"include": ["src/**/*", "bin/**/*"],
+	"include": [
+		"src/**/*",
+	],
 	"references": []
 }
