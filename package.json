@@ -15,21 +15,28 @@
 		"watch:css": "cd packages/xplorajs && bun run watch:css",
 		"build": "cd packages/xplorajs-react && bun run build && cd ../xplorajs && bun run build && cd ../create-xplora-app && bun run build",
 		"serve": "cd packages/xplorajs && bun run serve",
-		"publish": "cd packages/xplorajs && npm publish && cd ../xplorajs-react && npm publish && cd ../create-xplora-app && npm publish"
+		"publish": "cd packages/xplorajs && npm publish && cd ../xplorajs-react && npm publish && cd ../create-xplora-app && npm publish",
+		"test": "vitest",
+		"test:run": "vitest run",
+		"test:coverage": "vitest run --coverage"
 	},
 	"devDependencies": {
 		"@tailwindcss/cli": "^4.1.7",
+		"@types/node": "^20.17.49",
 		"@types/react": "^19.1.4",
 		"@types/react-dom": "^19.1.5",
+		"@vitest/coverage-v8": "^4.0.16",
 		"bun-types": "^1.2.13",
 		"tailwindcss": "^4.1.7",
 		"typescript": "^5.8.3",
-		"@types/node": "^20.17.49"
+		"vitest": "^4.0.16"
 	},
 	"dependencies": {
 		"react": "^19.1.0",
 		"react-dom": "^19.1.0"
 	},
-	"engines": { "bun": ">=1.3.0" },
+	"engines": {
+		"bun": ">=1.3.0"
+	},
 	"packageManager": "bun@1.3.0"
 }

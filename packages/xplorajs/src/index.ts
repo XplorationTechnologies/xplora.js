@@ -1,8 +1,2 @@
-const { XploraConfig, defineConfig } = require("./config");
-
-module.exports = {
-	XploraConfig,
-	defineConfig,
-};
-export { defineConfig };
-
+export type { XploraConfig } from "./config";
+export { defineConfig } from "./config";

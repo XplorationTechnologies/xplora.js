@@ -1,3 +1,4 @@
+import { join } from "node:path";
 import { serve } from "bun";
 
 export async function start() {
@@ -11,10 +12,22 @@ export async function start() {
     port: config.port,
     async fetch(req: Request) {
       const url = new URL(req.url);
-      const path = url.pathname;
+      const pathname = url.pathname;
 
-      if (path === "/") {
-        return new Response("Hello from XploraJS!");
+      const distDir = join(process.cwd(), "dist");
+
+      let filePath: string;
+
+      if (pathname.includes(".")) {
+        filePath = join(distDir, pathname);
+      } else {
+        filePath = join(distDir, pathname, "index.html");
+      }
+
+      const file = Bun.file(filePath);
+
+      if (await file.exists()) {
+        return new Response(file);
       }
 
       return new Response("Not found", { status: 404 });
