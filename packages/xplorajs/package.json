@@ -39,7 +39,8 @@
   },
   "peerDependencies": {
     "react": ">=18 || >=19",
-    "react-dom": ">=18 || >=19"
+    "react-dom": ">=18 || >=19",
+    "tailwindcss": ">=4.0.0"
   },
   "publishConfig": {
     "access": "public"

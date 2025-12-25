@@ -1,19 +1,69 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import { mkdir, writeFile } from "node:fs/promises";
 import { serve } from "bun";
 import { watch } from "chokidar";
+import { glob } from "fast-glob";
 import React from "react";
 import type { ComponentType } from "react";
 import { WebSocketServer } from "ws";
 import { renderToStream } from "xplorajs-react";
-import { build } from "./build";
+import { buildCSS } from "./css";
 
 // biome-ignore lint/suspicious/noExplicitAny: <intended>
 const pages = new Map<string, ComponentType<Record<string, any>>>();
 
+interface Route {
+  path: string;
+  file: string;
+  isDynamic: boolean;
+  params: string[];
+}
+
+function convertToRoute(filePath: string): Route {
+  const relativePath = filePath.replace("src/app/", "");
+  const path = relativePath
+    .replace(/\.tsx$/, "")
+    .replace(/\/page$/, "")
+    .replace(/\[([^\]]+)\]/g, ":$1");
+
+  const params = (relativePath.match(/\[([^\]]+)\]/g) || []).map((param) =>
+    param.slice(1, -1),
+  );
+
+  return {
+    path: path === "page" ? "/" : `/${path}`,
+    file: filePath,
+    isDynamic: params.length > 0,
+    params,
+  };
+}
+
+async function generateRoutes() {
+  await mkdir(join(process.cwd(), ".xplora"), { recursive: true });
+
+  const pageFiles = await glob("src/app/**/*.tsx", {
+    ignore: ["**/node_modules/**"],
+  });
+
+  const routes: Route[] = pageFiles.map(convertToRoute);
+
+  const routesConfig = {
+    routes,
+    generatedAt: new Date().toISOString(),
+  };
+
+  await writeFile(
+    join(process.cwd(), ".xplora", "routes.json"),
+    JSON.stringify(routesConfig, null, 2),
+  );
+
+  return routes;
+}
+
 async function loadPages() {
   pages.clear();
-  const routes = await loadRoutes();
+  const routes = await generateRoutes();
 
   for (const route of routes) {
     const abs = join(process.cwd(), route.file);
@@ -23,16 +73,6 @@ async function loadPages() {
       // biome-ignore lint/suspicious/noExplicitAny: <intended>
       (await import(abs)).default as ComponentType<Record<string, any>>,
     );
-  }
-}
-
-async function loadRoutes() {
-  try {
-    const routesPath = join(process.cwd(), ".xplora", "routes.json");
-    const routesContent = readFileSync(routesPath, "utf-8");
-    return JSON.parse(routesContent).routes;
-  } catch {
-    return [];
   }
 }
 
@@ -48,17 +88,27 @@ export async function dev() {
 
   watcher.on("change", async (path: string) => {
     console.log(`File ${path} has been changed`);
-    await build();
-    await loadPages();
 
-    for (const client of wss.clients) {
-      if (client.readyState === WebSocket.OPEN) {
-        client.send(JSON.stringify({ type: "reload" }));
+    if (path.endsWith(".css")) {
+      // CSS changed - rebuild CSS and notify clients for CSS-only reload
+      await buildCSS();
+      for (const client of wss.clients) {
+        if (client.readyState === WebSocket.OPEN) {
+          client.send(JSON.stringify({ type: "css" }));
+        }
+      }
+    } else {
+      // TSX/other files changed - reload pages and trigger full reload
+      await loadPages();
+      for (const client of wss.clients) {
+        if (client.readyState === WebSocket.OPEN) {
+          client.send(JSON.stringify({ type: "reload" }));
+        }
       }
     }
   });
 
-  await build();
+  await buildCSS();
   await loadPages();
 
   serve({
