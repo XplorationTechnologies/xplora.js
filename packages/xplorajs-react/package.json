@@ -12,7 +12,7 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "swc src -d dist && tsc --emitDeclarationOnly",
+    "build": "swc src -d dist && cp src/index.d.ts dist/index.d.ts",
     "dev": "swc src -d dist --watch",
     "prepublishOnly": "bun run build"
   },
