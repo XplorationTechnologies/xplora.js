@@ -32,9 +32,9 @@ bun run dev
 bun run build
 ```
 
-## 📚 Dokumentasi
+<!-- ## 📚 Dokumentasi
 
-Untuk dokumentasi lengkap, kunjungi [docs.xplorajs.dev](https://docs.xplorajs.dev)
+Untuk dokumentasi lengkap, kunjungi [docs.xplorajs.dev](https://docs.xplorajs.dev) -->
 
 ## 🤝 Kontribusi
 
