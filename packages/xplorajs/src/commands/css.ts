@@ -19,7 +19,7 @@ export async function buildCSS() {
   await mkdir(join(process.cwd(), "dist/assets"), { recursive: true });
 
   try {
-    await $`bunx tailwindcss -i ${inputPath} -o ${outputPath} --minify`.quiet();
+    await $`bunx @tailwindcss/cli -i ${inputPath} -o ${outputPath} --minify`.quiet();
     console.log("CSS built successfully");
   } catch (error) {
     console.error("CSS build failed:", error);
