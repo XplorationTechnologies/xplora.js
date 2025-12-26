@@ -11,8 +11,6 @@ async function createApp(name) {
 
   await mkdir(targetDir, { recursive: true });
   await copy(templateDir, targetDir);
-  execSync("git init", { cwd: targetDir });
-
   console.log(`
 ✨ Successfully created ${name}
 
